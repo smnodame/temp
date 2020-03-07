@@ -1,0 +1,40 @@
+<html lang="en">
+    <head>
+    </head>
+    <body>
+          <input id="username" type="text" placeholder="Enter Username" name="uname" required>
+          <input id="password" type="password" placeholder="Enter Password" name="psw" required>
+          <button type="submit" onclick="submit()">Login</button>
+          <p id="status"></p>
+    </body>
+    <script>
+      	var submit = function() {
+			// https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch
+			// url
+			// method
+			// body
+
+			fetch('http://localhost:3000/manager/login', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify({
+					username: document.getElementById("username").value,
+					password: document.getElementById("password").value,
+				}),
+			})
+			.then(function(res) {
+					if(res.status == 401) {
+						document.getElementById("status").innerHTML = "your username and password don't match"
+						throw new Error()
+					}
+					return res.json()
+			})
+			.then((data) => {
+				// redirect url
+				window.location.href = "http://localhost:3000/data.html";
+			})
+      	}
+    </script>
+</html>
