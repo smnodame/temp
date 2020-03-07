@@ -1,6 +1,10 @@
+### How to run
+```
 npm install
 node index.js
-http://localhost:3000
+```
 
-### request tool
-postman
+then open http://localhost:3000
+
+### Request tool
+- postman
